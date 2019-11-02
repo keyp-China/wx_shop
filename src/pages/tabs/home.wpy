@@ -8,6 +8,7 @@ import wepy from 'wepy'
 
 export default class Home extends wepy.page {
     data = {
+        swiperData:[]
     }
 
     config = {
@@ -15,6 +16,22 @@ export default class Home extends wepy.page {
 
     methods = {
 
+    }
+
+    //获取轮播图数据
+    async getSwiperData(){
+        const { data } = await wepy.request({
+            url:"https://uinav.com/api/public/v1/home/swiperdata"
+        })
+        if(data.meta.status !== 200){
+            return console.log("获取轮播图失败");
+        }
+        this.swiperData = data.message
+        this.$apply()
+    }
+
+    onLoad(){
+        this.getSwiperData()
     }
 }
 
