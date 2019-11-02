@@ -15,9 +15,9 @@ export default class extends wepy.app {
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarBackgroundColor: '#FF0000',
+      navigationBarTitleText: '优购商城',
+      navigationBarTextStyle: 'white'
     }
   }
 
