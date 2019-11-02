@@ -14,9 +14,7 @@ export default class extends wepy.mixin {
      *  获取轮播图数据 
      */
     async getSwiperData() {
-        const { data } = await wepy.request({
-            url: "https://uinav.com/api/public/v1/home/swiperdata"
-        })
+        const { data } = await wepy.get("/home/swiperdata")
         if (data.meta.status !== 200) {
             return wepy.baseToast("轮播图获取失败")
         }
@@ -28,9 +26,7 @@ export default class extends wepy.mixin {
      *  获取分类数据
      */
     async getCateData() {
-        const { data } = await wepy.request({
-            url: "https://uinav.com/api/public/v1/home/catitems"
-        })
+        const { data } = await wepy.get("/home/catitems")
         if (data.meta.status !== 200) {
             return wepy.baseToast("分类数据获取失败")
         }
