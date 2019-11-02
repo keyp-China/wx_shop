@@ -1,5 +1,14 @@
 <template>
-    <view>首页</view>
+    <view class='home'>
+        <!-- 轮播图 -->
+        <swiper indicator-dots circular autoplay interval="3000">
+            <swiper-item wx:for="{{swiperData}}" wx:key="index">
+                <navigator url="{{item.navigator_url}}">
+                    <image src="{{item.image_src}}"/>
+                </navigator>
+            </swiper-item>
+        </swiper>
+    </view>
 </template>
 
 <script>
@@ -38,5 +47,13 @@ export default class Home extends wepy.page {
 </script>
 
 <style lang='less'>
-
+.home{
+    swiper{
+        height: 350rpx;
+        navigator,image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
 </style>
