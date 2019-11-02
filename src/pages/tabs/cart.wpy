@@ -6,7 +6,7 @@
 
 import wepy from 'wepy'
 
-export default class Carts extends wepy.page {
+export default class Cart extends wepy.page {
     data = {
     }
 
