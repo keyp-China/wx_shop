@@ -18,7 +18,7 @@ export default class extends wepy.mixin {
             url: "https://uinav.com/api/public/v1/home/swiperdata"
         })
         if (data.meta.status !== 200) {
-            return console.log("获取轮播图失败");
+            return wepy.baseToast("轮播图获取失败")
         }
         this.swiperData = data.message
         this.$apply()
@@ -32,7 +32,7 @@ export default class extends wepy.mixin {
             url: "https://uinav.com/api/public/v1/home/catitems"
         })
         if (data.meta.status !== 200) {
-            return console.log("获取分类失败");
+            return wepy.baseToast("分类数据获取失败")
         }
         this.catesData = data.message
         this.$apply()
