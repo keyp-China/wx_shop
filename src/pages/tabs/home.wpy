@@ -15,6 +15,19 @@
                 <image src="{{item.image_src}}"/>
             </navigator>
         </view>
+
+        <!-- 楼层 -->
+        <view class="floor_box">
+            <view class="floor_item" wx:for="{{floorData}}" wx:key="index">
+                <image class="title" src="{{item.floor_title.image_src}}"></image>
+                <view class="imgs">
+                    <navigator url="{{item.navigator_url}}" wx:for="{{item.product_list}}" wx:key="index">
+                        <image src="{{item.image_src}}" style="width: {{item.image_width}}rpx;"/>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+
     </view>
 </template>
 
@@ -38,6 +51,7 @@ export default class Home extends wepy.page {
             height: 100%;
         }
     }
+
     .cate_box{
         display: flex;
         justify-content: space-around;
@@ -45,6 +59,27 @@ export default class Home extends wepy.page {
         image {
             width: 128rpx;
             height: 140rpx;
+        }
+    }
+
+    .floor_box{
+        .floor_item{
+            margin-top: 10px;
+            overflow: hidden;
+            .title{
+                height: 50rpx;
+                width: 640rpx;
+            }
+            .imgs{
+                image{
+                    float: left;
+                    margin: 8rpx;
+                    height: 190rpx;
+                }
+                :first-child image{
+                    height: 390rpx;
+                }
+            }
         }
     }
 }

@@ -15,7 +15,8 @@
         'pages/tabs/search',
         'pages/tabs/cart',
         'pages/tabs/my',
-        'pages/goods_detail/index'
+        'pages/goods_detail/index',
+        'pages/goods_list/index'
       ],
       window: {
         backgroundTextStyle: 'light',
