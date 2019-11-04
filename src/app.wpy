@@ -18,6 +18,12 @@
         'pages/goods_detail/index',
         'pages/goods_list/index'
       ],
+      "usingComponents": {
+        "van-sidebar": "./components/vant/sidebar/index",
+        "van-sidebar-item": "./components/vant/sidebar-item/index",
+        "van-grid": "./components/vant/grid/index",
+        "van-grid-item": "./components/vant/grid-item/index"
+      },
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#FF0000',
@@ -68,6 +74,20 @@
       super()
       this.use('requestfix')
       this.use('promisify')
+      // 拦截request请求
+      this.intercept('request', {
+        // 发出请求时的回调函数
+        config(p) {
+          wepy.showLoading({ title: "数据正在加载中..." })
+          return p;
+        },
+        success(p) { return p; },
+        fail(p) { return p; },
+        // 请求完成时的回调函数(请求成功或失败都会被执行)
+        complete(p) {
+          wepy.hideLoading()
+        }
+      })
     }
 
     onLaunch() { }
