@@ -8,9 +8,21 @@
             bind:search="onSearch"
             bind:cancel="onCancel" />
         <!-- 搜索内容 -->
-        <van-cell-group>
+        <van-cell-group hidden="{{value}}">
             <van-cell title="{{item.goods_name}}" wx:for="{{searchData}}" wx:key="index" url="/pages/goods_detail/index?goods_id={{item.goods_id}}" />
         </van-cell-group>
+        <!-- 搜索记录 -->
+        <view class="history" hidden="{{value}}">
+            <view class="top">
+                <text>搜索记录</text>
+                <van-icon name="delete" @click="delHistory()" />
+            </view>
+            <view class="tag_box">
+                <van-tag wx:for="{{history}}" wx:key="index" size="medium" @tap="onTapTag({{index}})">
+                    {{item}}
+                </van-tag>
+            </view>
+        </view>
     </view>
 </template>
 
@@ -24,5 +36,22 @@ export default class Search extends wepy.page {
 </script>
 
 <style lang='less'>
-
+.search_box{
+    .history{
+        padding: 0 18rpx;
+        .top{
+            display: flex;
+            justify-content: space-between;
+            margin: 16rpx 0;
+            text{
+                font-size: 36rpx;
+            }
+        }
+        .tag_box{
+            .van-tag{
+                margin: 0 8rpx;
+            }
+        }
+    }
+}
 </style>
