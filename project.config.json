@@ -50,6 +50,13 @@
 					"id": -1,
 					"name": "分类页",
 					"pathName": "pages/tabs/cates",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索页",
+					"pathName": "pages/tabs/search",
 					"scene": null
 				}
 			]
