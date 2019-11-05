@@ -45,6 +45,7 @@
             <van-icon name="arrow" />
         </view>
         <view class="line"></view>
+
         <!-- 商品详情 -->
         <van-tabs active="{{ 0 }}" bind:change="onChange">
             <van-tab title="图文详情">
@@ -57,6 +58,14 @@
                 </view>
             </van-tab>
         </van-tabs>
+
+        <!-- 商品导航 -->
+        <van-goods-action custom-class="goods_nav">
+            <van-goods-action-icon icon="chat-o" open-type="contact" text="客服" />
+            <van-goods-action-icon icon="cart-o" text="购物车" info="5" />
+            <van-goods-action-button text="加入购物车" type="warning" />
+            <van-goods-action-button text="立即购买" />
+        </van-goods-action>
     </view>
 </template>
 
@@ -102,22 +111,26 @@ export default class GoodsDetail extends wepy.page {
     }
 
     /* 规格参数 */
-    .attrNum{
-        display: flex;
-        text{
-            padding: 0 20rpx;
-            display: block;
-            width: 50%;
-            border-bottom: 2rpx solid #eee;
-            border-right: 2rpx solid #eee;
-            text-align: left;
-            color: #ccc;
-            font-size: 30rpx;
-        }
-        text:nth-child(2){
-            border-right: none;
+    .van-tabs{
+        margin-bottom: 100rpx;
+        .attrNum{
+            display: flex;
+            text{
+                padding: 0 20rpx;
+                display: block;
+                width: 50%;
+                border-bottom: 2rpx solid #eee;
+                border-right: 2rpx solid #eee;
+                text-align: left;
+                color: #ccc;
+                font-size: 30rpx;
+            }
+            text:nth-child(2){
+                border-right: none;
+            }
         }
     }
+    
 
     /* 商品标题 */
     .title{
@@ -163,6 +176,10 @@ export default class GoodsDetail extends wepy.page {
                 color: #999;
             }
         }
+    }
+
+    .goods_nav {
+        z-index: 999999;
     }
 }
 </style>
