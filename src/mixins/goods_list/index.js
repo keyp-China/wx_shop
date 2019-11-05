@@ -34,6 +34,9 @@ export default class extends wepy.mixin {
             pagenum: this.pagenum,
             pagesize: this.pagesize
         })
+        if(data.meta.status !== 200) {
+            return wepy.baseToast
+        }
         //下拉数据获取完成
         callback && callback()
         // this.goodsList.push.apply(this.goodsList,data.message.goods);
@@ -49,6 +52,9 @@ export default class extends wepy.mixin {
         this.getGoodsList()
     }
 
+    /**
+     * 上拉获取
+     */
     onReachBottom(){
         if(this.pagenum*this.pagesize >= this.total) return this.isMore = false
         if(this.isLoading) return
@@ -56,8 +62,10 @@ export default class extends wepy.mixin {
         this.getGoodsList()
     }
 
+    /**
+     * 下拉刷新
+     */
     onPullDownRefresh() {
-        console.log('下拉了')
         this.pagenum = 1
         this.isLoading = false 
         this.isMore = true
