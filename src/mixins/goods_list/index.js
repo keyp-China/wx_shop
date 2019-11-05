@@ -8,7 +8,8 @@ export default class extends wepy.mixin {
         pagesize: 10,
         goodsList: [],
         total: 0,
-        isLoading: false
+        isLoading: false,
+        isMore: true
     }
 
     methods = {
@@ -40,6 +41,7 @@ export default class extends wepy.mixin {
     }
 
     onReachBottom(){
+        if(this.pagenum*this.pagesize >= this.total) return this.isMore = false
         if(this.isLoading) return
         this.pagenum++
         this.getGoodsList()

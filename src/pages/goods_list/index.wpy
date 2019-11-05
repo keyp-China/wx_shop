@@ -1,13 +1,15 @@
 <template>
     <view class="goods_list">
         <van-card
+            custom-class="goods_item"
             wx:for="{{goodsList}}"
             wx:key="index"
             num="{{item.goods_number}}"
             price="{{item.goods_price}}"
             title="{{item.goods_name}}"
-            thumb="{{ item.goods_small_logo }}"
+            thumb="{{ item.goods_small_logo || 'http://hbimg.b0.upaiyun.com/bdaca9a07e1a8947c00c2f826ebf848750927aa24963-cATwbg_fw658' }}"
         />
+        <view class="isOver" wx:if="{{!isMore}}">没有更多数据了</view>
     </view>
 </template>
 
@@ -27,5 +29,17 @@ export default class GoodsList extends wepy.page {
 </script>
 
 <style lang='less'>
-
+.goods_list{
+    .goods_item{
+        border-bottom: 2rpx solid #ccc;
+    }
+    .isOver {
+        height: 70rpx;
+        border-top: 3rpx solid #ccc;
+        text-align: center;
+        line-height: 70rpx;
+        font-size: 30rpx;
+        color: #ccc;
+    }
+}
 </style>
