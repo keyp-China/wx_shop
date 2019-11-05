@@ -6,8 +6,36 @@
                 <image @tap="previewImage({{item.pics_big_url}})" src="{{item.pics_big_url}}"></image>
             </swiper-item>
         </swiper>
-
+        
+        <!-- 商品标题 -->
+        <view class="title">
+            <view class="price">￥{{goods_detail.goods_price}}</view>
+            <view class="goods_name">
+                <view class="left">
+                    {{goods_detail.goods_name}}
+                </view>
+                <view class="right">
+                    <van-icon name="star-o" />
+                    <text>收藏</text>
+                </view>
+            </view>
+            <view class="express">快递：免运费</view>
+        </view>
         <view class="line"></view>
+
+        <!-- 促销已选 -->
+        <view class="promotion">
+            <view>
+                <text>促销</text>
+                <text>满400元减200元</text>
+            </view>
+            <view>
+                <text>已选</text>
+                <text>黑色/s/1件</text>
+            </view>
+        </view>
+        <view class="line"></view>
+
         <!-- 收货地址 -->
         <view class="address">
             <view @tap="chooseAddress">
@@ -88,6 +116,52 @@ export default class GoodsDetail extends wepy.page {
         }
         text:nth-child(2){
             border-right: none;
+        }
+    }
+
+    /* 商品标题 */
+    .title{
+        padding: 10rpx 20rpx;
+        .price{
+            color: red;
+            font-size: 35rpx;
+        }
+        .goods_name {
+            display: flex;
+            justify-content: space-between;
+            padding: 15rpx 0;
+            .left{
+                font-size: 28rpx;
+            }
+            .right {
+                width: 100rpx;
+                margin-left: 10rpx;
+                text-align: center;
+                border-left:1px solid #ccc;
+                text{
+                    font-size: 28rpx;
+                    display: block;
+                }
+            }
+        }
+
+        .express {
+            color: #333;
+            font-size: 28rpx;
+            font-weight: bold;
+        }
+    }
+
+    /* 促销已选 */
+    .promotion {
+        padding: 0 20rpx;
+        view{
+            font-size: 28rpx;
+            padding: 8rpx 0;
+            text:nth-child(2){
+                margin-left: 10rpx;
+                color: #999;
+            }
         }
     }
 }
