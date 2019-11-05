@@ -6,6 +6,29 @@
                 <image @tap="previewImage({{item.pics_big_url}})" src="{{item.pics_big_url}}"></image>
             </swiper-item>
         </swiper>
+
+        <view class="line"></view>
+        <!-- 收货地址 -->
+        <view class="address">
+            <view @tap="chooseAddress">
+                <text>送至</text>
+                <text>{{getAddressInfo}}</text>
+            </view>
+            <van-icon name="arrow" />
+        </view>
+        <view class="line"></view>
+        <!-- 商品详情 -->
+        <van-tabs active="{{ 0 }}" bind:change="onChange">
+            <van-tab title="图文详情">
+                <rich-text nodes="{{goods_detail.goods_introduce}}"></rich-text>
+            </van-tab>
+            <van-tab title="规格参数">
+                <view class="attrNum" wx:for="{{goods_detail.attrs}}" wx:key="index">
+                    <text>{{item.attr_name}}</text>
+                    <text>{{item.attr_vals || '暂无信息'}}</text>
+                </view>
+            </van-tab>
+        </van-tabs>
     </view>
 </template>
 
@@ -31,6 +54,40 @@ export default class GoodsDetail extends wepy.page {
         image{
             height: 100%;
             width: 100%;
+        }
+    }
+
+    .line{
+        width: 100%;
+        height: 10rpx;
+        background-color: #ccc;
+    }
+
+    .address{
+        padding: 10rpx 20rpx;
+        display: flex;
+        justify-content: space-between;
+        text:last-child{
+            margin:20rpx;
+            color: #aaa;
+        }
+    }
+
+    /* 规格参数 */
+    .attrNum{
+        display: flex;
+        text{
+            padding: 0 20rpx;
+            display: block;
+            width: 50%;
+            border-bottom: 2rpx solid #eee;
+            border-right: 2rpx solid #eee;
+            text-align: left;
+            color: #ccc;
+            font-size: 30rpx;
+        }
+        text:nth-child(2){
+            border-right: none;
         }
     }
 }

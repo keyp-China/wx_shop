@@ -2,11 +2,26 @@ import wepy from 'wepy'
 
 export default class extends wepy.mixin {
     data = {
-        goods_id: 0,
-        goods_detail: {}
+        goods_id: 0, //商品ID
+        goods_detail: {}, //商品详情
+        addressInfo: wepy.getStorageSync('address') || null //已选地址
     }
 
     methods = {
+        /**
+         * 选择收货地址
+         */
+        async chooseAddress() {
+            // 小程序开发文档中 api》开放接口
+            const res = await wepy.chooseAddress().catch(err => err)
+            if (res.errMsg !== 'chooseAddress:ok') {
+                return wepy.baseToast('获取收货地址失败')
+            }
+            this.addressInfo = res
+            wepy.setStorageSync('address', res)
+            this.$apply()
+        },
+
         /**
          * 点击轮播图预览图片
          */
@@ -16,9 +31,18 @@ export default class extends wepy.mixin {
                 return item.pics_big_url
             })
             wepy.previewImage({
-                urls, 
+                urls,
                 current
             })
+        }
+    }
+
+    computed = {
+        //地址的计算属性
+        getAddressInfo() {
+            if (this.addressInfo == null) return '请选择收货地址'
+            const { provinceName, cityName, countyName, detailInfo } = this.addressInfo
+            return provinceName + cityName + countyName + detailInfo
         }
     }
 
