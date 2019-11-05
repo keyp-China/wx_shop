@@ -5,16 +5,13 @@
 <script>
 
 import wepy from 'wepy'
+import mix from '@/mixins/goods_list'
 
-export default class Home extends wepy.page {
-    data = {
-    }
+export default class GoodsList extends wepy.page {
+    mixins = [mix]
 
     config = {
-    }
-
-    methods = {
-
+        navigationBarTitleText: '商品列表'
     }
 }
 
