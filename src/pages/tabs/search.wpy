@@ -8,14 +8,14 @@
             bind:search="onSearch"
             bind:cancel="onCancel" />
         <!-- 搜索内容 -->
-        <van-cell-group hidden="{{value}}">
+        <van-cell-group hidden="{{value == ''}}">
             <van-cell title="{{item.goods_name}}" wx:for="{{searchData}}" wx:key="index" url="/pages/goods_detail/index?goods_id={{item.goods_id}}" />
         </van-cell-group>
         <!-- 搜索记录 -->
-        <view class="history" hidden="{{value}}">
+        <view class="history" hidden="{{value != ''}}">
             <view class="top">
                 <text>搜索记录</text>
-                <van-icon name="delete" @click="delHistory()" />
+                <van-icon name="delete" @click="delHistory" />
             </view>
             <view class="tag_box">
                 <van-tag wx:for="{{history}}" wx:key="index" size="medium" @tap="onTapTag({{index}})">

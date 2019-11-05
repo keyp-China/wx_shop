@@ -51,8 +51,14 @@ export default class extends wepy.mixin {
         if (data.meta.status !== 200) {
             return wepy.baseToast()
         }
+        if(this.value.trim().length == 0) return this.searchData = []
         this.searchData = data.message
         this.$apply()
+    }
+
+    onHide(){
+        this.value = ''
+        this.searchData = []
     }
 
 }
