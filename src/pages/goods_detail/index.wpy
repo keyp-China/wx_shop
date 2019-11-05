@@ -1,5 +1,12 @@
 <template>
-    <view>详情页</view>
+    <view class="goods_detail">
+        <!-- 轮播图 -->
+        <swiper autoplay indicator-dots circular>
+            <swiper-item wx:for="{{goods_detail.pics}}" wx:key="index">
+                <image @tap="previewImage({{item.pics_big_url}})" src="{{item.pics_big_url}}"></image>
+            </swiper-item>
+        </swiper>
+    </view>
 </template>
 
 <script>
@@ -9,10 +16,22 @@ import mix from '@/mixins/goods_detail'
 
 export default class GoodsDetail extends wepy.page {
     mixins = [mix]
+
+    config = {
+        navigationBarTitleText: '商品详情'
+    }
 }
 
 </script>
 
 <style lang='less'>
-
+.goods_detail{
+    swiper{
+        height: 750rpx;
+        image{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
 </style>

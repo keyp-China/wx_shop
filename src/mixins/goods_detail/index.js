@@ -7,6 +7,19 @@ export default class extends wepy.mixin {
     }
 
     methods = {
+        /**
+         * 点击轮播图预览图片
+         */
+        previewImage(current) {
+            //通过map获取previewImage方法所需的urls数组
+            const urls = this.goods_detail.pics.map(item => {
+                return item.pics_big_url
+            })
+            wepy.previewImage({
+                urls, 
+                current
+            })
+        }
     }
 
     /**
@@ -16,7 +29,7 @@ export default class extends wepy.mixin {
         const { data } = await wepy.get('/goods/detail', {
             goods_id: this.goods_id
         })
-        if(data.meta.status !== 200){
+        if (data.meta.status !== 200) {
             return wepy.baseToast()
         }
         this.goods_detail = data.message
