@@ -8,6 +8,7 @@
             price="{{item.goods_price}}"
             title="{{item.goods_name}}"
             thumb="{{ item.goods_small_logo || 'http://hbimg.b0.upaiyun.com/bdaca9a07e1a8947c00c2f826ebf848750927aa24963-cATwbg_fw658' }}"
+            @tap="goGoodsDetail({{item.goods_id}})"
         />
         <view class="isOver" wx:if="{{!isMore}}">没有更多数据了</view>
     </view>
@@ -22,7 +23,10 @@ export default class GoodsList extends wepy.page {
     mixins = [mix]
 
     config = {
-        navigationBarTitleText: '商品列表'
+        navigationBarTitleText: '商品列表',
+        enablePullDownRefresh: true,
+        backgroundColor: '#ccc',
+        backgroundTextStyle: 'light'
     }
 }
 
