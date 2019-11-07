@@ -50,6 +50,17 @@ export default class extends wepy.mixin {
             if (this.addressInfo == null) return '请选择收货地址'
             const { provinceName, cityName, countyName, detailInfo } = this.addressInfo
             return provinceName + cityName + countyName + detailInfo
+        },
+
+        // 计算购物车里要购买的数量
+        cartCount(){
+            let count = 0
+            this.$parent.globalData.cart.forEach(item => {
+                if(item.isCheck){
+                    count += item.count
+                }
+            })
+            return count
         }
     }
 

@@ -16,7 +16,9 @@
                 <!-- 商品滑动组件 -->
                 <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0.001 }}" wx:for="{{cart}}" wx:key="index">
                     <!-- 商品卡片 -->
-                    <van-card title="{{item.name}}">
+                    <van-card>
+                        <!-- 标题插槽 -->
+                        <navigator slot="title" hover-class="none" class="title" url="/pages/goods_detail/index?goods_id={{item.id}}">{{item.name}}</navigator>
                         <!-- 描述插槽 -->
                         <view slot="desc" class="desc">
                             <text class="price">￥{{item.price}}</text>
@@ -25,7 +27,7 @@
                         <!-- 图片插槽 -->
                         <view slot="thumb" class="thumb">
                             <van-checkbox value="{{item.isCheck}}" @change="isCheckChange" data-id="{{item.id}}"></van-checkbox>
-                            <image src="{{item.pic}}"></image>
+                            <navigator hover-class="none" url="/pages/goods_detail/index?goods_id={{item.id}}"><image src="{{item.pic}}"></image></navigator>
                         </view>
                     </van-card>
                     <!-- 右侧滑动删除 -->
@@ -86,6 +88,9 @@ export default class Cart extends wepy.page {
             .price {
                 color: #f00;
             }
+        }
+        .title{
+            font-weight: 700;
         }
         .thumb{
             display: flex;
