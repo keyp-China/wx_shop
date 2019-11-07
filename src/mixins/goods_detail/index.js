@@ -9,6 +9,15 @@ export default class extends wepy.mixin {
 
     methods = {
         /**
+         * 加入购物车
+         */
+        addToCart(){
+            this.$parent.addToCart(this.goods_detail)
+            console.log(this.$parent.globalData.cart);
+            
+        },
+
+        /**
          * 选择收货地址
          */
         async chooseAddress() {

@@ -78,7 +78,33 @@
     }
 
     globalData = {
-      userInfo: null
+      cart: []
+    }
+
+    // 加入购物车
+    addToCart(goods){
+      // 判断购物车是否存在
+      const index = this.globalData.cart.findIndex(item => item.id == goods.goods_id )
+      if(index == -1) {
+        const goodsObj = {
+          id: goods.goods_id, // 商品id
+          name: goods.goods_name, // 商品名称
+          price: goods.goods_price, // 商品价格
+          count: 1, // 商品数量
+          pic: goods.goods_big_logo, // 商品图片
+          isCheck: true // 是否购买
+        }
+        this.globalData.cart.push(goodsObj);
+      } else {
+        this.globalData.cart[index].count++
+      }
+      this.saveCart()
+      wepy.baseToast('加入购物车成功','success')
+    }
+
+    //购物车本地存储
+    saveCart(){
+      wepy.setStorageSync('cart',this.globalData.cart)
     }
 
     constructor() {
@@ -101,7 +127,9 @@
       })
     }
 
-    onLaunch() { }
+    onLaunch() {
+      this.globalData.cart = wepy.getStorageSync('cart') || []
+     }
 
   }
 </script>
