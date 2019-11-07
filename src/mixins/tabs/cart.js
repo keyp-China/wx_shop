@@ -25,6 +25,13 @@ export default class extends wepy.mixin {
          */
         deleteItem(id){
             this.$parent.deleteItem(id);
+        },
+
+        /**
+         * 点击全选
+         */
+        checkAll(event){
+            this.$parent.checkAll(event.detail)
         }
     }
 
@@ -34,7 +41,28 @@ export default class extends wepy.mixin {
          */
         isEmpty(){
             return this.cart.length == 0
+        },
+
+        /**
+         * 计算总价格
+         */
+        totalPrice(){
+            let total = 0;
+            this.cart.forEach(item => {
+                if(item.isCheck){
+                    total += item.price * item.count
+                }
+            })
+            return total*100
+        },
+
+        /**
+         * 全选的状态
+         */
+        isCheckAll(){
+            return this.cart.every((item=>item.isCheck))
         }
+
     }
 
     onLoad(){

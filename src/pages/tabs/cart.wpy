@@ -8,28 +8,35 @@
 
         <!-- 购物车非空 -->
         <view wx:else class='cart_list'>
-            <van-cell title="购物车列表">
-                <van-icon name="cart-o" slot="icon" size="20px" />
-            </van-cell>
-
-            <!-- 商品滑动组件 -->
-            <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0.001 }}" wx:for="{{cart}}" wx:key="index">
-                <!-- 商品卡片 -->
-                <van-card title="{{item.name}}">
-                    <!-- 描述插槽 -->
-                    <view slot="desc" class="desc">
-                        <text class="price">￥{{item.price}}</text>
-                        <van-stepper value="{{item.count}}" @change="countChange" data-id="{{item.id}}" />
-                    </view>
-                    <!-- 图片插槽 -->
-                    <view slot="thumb" class="thumb">
-                        <van-checkbox value="{{item.isCheck}}" @change="isCheckChange" data-id="{{item.id}}"></van-checkbox>
-                        <image src="{{item.pic}}"></image>
-                    </view>
-                </van-card>
-                <!-- 右侧滑动删除 -->
-                <view slot="right" class="right-delete" @tap="deleteItem({{item.id}})">删除</view>
-            </van-swipe-cell>     
+            <view class="item_list">
+                <van-cell title="购物车列表">
+                    <van-icon name="cart-o" slot="icon" size="20px" />
+                </van-cell>
+    
+                <!-- 商品滑动组件 -->
+                <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0.001 }}" wx:for="{{cart}}" wx:key="index">
+                    <!-- 商品卡片 -->
+                    <van-card title="{{item.name}}">
+                        <!-- 描述插槽 -->
+                        <view slot="desc" class="desc">
+                            <text class="price">￥{{item.price}}</text>
+                            <van-stepper value="{{item.count}}" @change="countChange" data-id="{{item.id}}" />
+                        </view>
+                        <!-- 图片插槽 -->
+                        <view slot="thumb" class="thumb">
+                            <van-checkbox value="{{item.isCheck}}" @change="isCheckChange" data-id="{{item.id}}"></van-checkbox>
+                            <image src="{{item.pic}}"></image>
+                        </view>
+                    </van-card>
+                    <!-- 右侧滑动删除 -->
+                    <view slot="right" class="right-delete" @tap="deleteItem({{item.id}})">删除</view>
+                </van-swipe-cell>
+            </view>
+            
+            <!-- 提交订单栏 -->
+            <van-submit-bar price="{{ totalPrice }}" button-text="提交订单" bind:submit="onClickButton">
+                <van-checkbox custom-class="checkAll" value="{{isCheckAll}}" @change="checkAll">全选</van-checkbox>
+            </van-submit-bar>
         </view>
     </view>
 </template>
@@ -57,6 +64,7 @@ export default class Cart extends wepy.page {
             margin: 40rpx 0 20rpx 0;
         }
     }
+
     .cart_list{
         .right-delete{
             width: 65px;
@@ -65,6 +73,10 @@ export default class Cart extends wepy.page {
             text-align: center;
             color: #fff;
             background-color: #f00;
+        }
+
+        .checkAll{
+            margin: 10rpx 0 0 20rpx;
         }
 
         .desc{
@@ -87,6 +99,9 @@ export default class Cart extends wepy.page {
     }
     .van-card__thumb{
         width: 115px;
+    }
+    .item_list{
+        margin-bottom: 50px;
     }
 }
 </style>
