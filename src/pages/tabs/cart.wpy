@@ -1,25 +1,41 @@
 <template>
-    <view>购物车</view>
+    <view class="cart">
+        <!-- 购物车为空 -->
+        <view class="empty" wx:if="{{isEmpty}}">
+            <image src="http://destiny001.gitee.io/image/cart_empty.png"></image>
+            <view>哎呦，购物车是空的哦</view>
+        </view>
+
+        <!-- 购物车非空 -->
+        <view wx:else>
+            购物数据列表
+        </view>
+    </view>
 </template>
 
 <script>
 
 import wepy from 'wepy'
+import mix from '@/mixins/tabs/cart'
+
 
 export default class Cart extends wepy.page {
-    data = {
-    }
-
-    config = {
-    }
-
-    methods = {
-
-    }
+    mixins = [mix]
 }
 
 </script>
 
 <style lang='less'>
-
+.cart{
+    .empty{
+        text-align: center;
+        font-size: 24rpx;
+        image{
+            width: 120rpx;
+            height: 120rpx;
+            margin: 40rpx 0 20rpx 0;
+        }
+        
+    }
+}
 </style>
