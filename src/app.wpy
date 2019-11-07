@@ -33,7 +33,9 @@
         "van-tabs": "./components/vant/tabs/index",
         "van-goods-action": "./components/vant/goods-action/index",
         "van-goods-action-icon": "./components/vant/goods-action-icon/index",
-        "van-goods-action-button": "./components/vant/goods-action-button/index"
+        "van-goods-action-button": "./components/vant/goods-action-button/index",
+        "van-stepper": "./components/vant/stepper/index",
+        "van-checkbox": "./components/vant/checkbox/index",
       },
       window: {
         backgroundTextStyle: 'light',
@@ -102,7 +104,21 @@
       wepy.baseToast('加入购物车成功','success')
     }
 
-    //购物车本地存储
+    // 改变购物车商品的数量
+    updateCount(id,count){
+      const index = this.globalData.cart.findIndex(item => item.id == id)
+      this.globalData.cart[index].count = count
+      this.saveCart()
+    }
+
+    // 改变商品是否购买状态
+    updateIsCheck(id,isCheck){
+      const index = this.globalData.cart.findIndex(item => item.id == id)
+      this.globalData.cart[index].isCheck = isCheck
+      this.saveCart()
+    }
+
+    // 购物车本地存储
     saveCart(){
       wepy.setStorageSync('cart',this.globalData.cart)
     }

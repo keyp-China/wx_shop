@@ -7,8 +7,23 @@
         </view>
 
         <!-- 购物车非空 -->
-        <view wx:else>
-            购物数据列表
+        <view wx:else class='cart_list'>
+            <van-cell title="购物车列表">
+                <van-icon name="cart-o" slot="icon" size="20px" />
+            </van-cell>
+            <!-- 商品卡片 -->
+            <van-card title="{{item.name}}" wx:for="{{cart}}" wx:key="index">
+                <!-- 描述插槽 -->
+                <view slot="desc" class="desc">
+                    <text class="price">￥{{item.price}}</text>
+                    <van-stepper value="{{item.count}}" @change="countChange" data-id="{{item.id}}"/>
+                </view>
+                <!-- 图片插槽 -->
+                <view slot="thumb" class="thumb">
+                    <van-checkbox value="{{item.isCheck}}" @change="isCheckChange" data-id="{{item.id}}"></van-checkbox>
+                    <image src="{{item.pic}}"></image>
+                </view>
+            </van-card>
         </view>
     </view>
 </template>
@@ -35,7 +50,28 @@ export default class Cart extends wepy.page {
             height: 120rpx;
             margin: 40rpx 0 20rpx 0;
         }
-        
+    }
+    .cart_list{
+        .desc{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .price {
+                color: #f00;
+            }
+        }
+        .thumb{
+            display: flex;
+            align-items: center;
+            image{
+                width: 90px;
+                height: 90px;
+                margin-left: 5px;
+            }
+        }
+    }
+    .van-card__thumb{
+        width: 115px;
     }
 }
 </style>
