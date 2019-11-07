@@ -36,6 +36,7 @@
         "van-goods-action-button": "./components/vant/goods-action-button/index",
         "van-stepper": "./components/vant/stepper/index",
         "van-checkbox": "./components/vant/checkbox/index",
+        "van-swipe-cell": "./components/vant/swipe-cell/index"
       },
       window: {
         backgroundTextStyle: 'light',
@@ -86,7 +87,7 @@
     // 加入购物车
     addToCart(goods){
       // 判断购物车是否存在
-      const index = this.globalData.cart.findIndex(item => item.id == goods.goods_id )
+      const index = this.getIndexById(goods.goods_id)
       if(index == -1) {
         const goodsObj = {
           id: goods.goods_id, // 商品id
@@ -106,16 +107,25 @@
 
     // 改变购物车商品的数量
     updateCount(id,count){
-      const index = this.globalData.cart.findIndex(item => item.id == id)
-      this.globalData.cart[index].count = count
+      this.globalData.cart[this.getIndexById(id)].count = count
       this.saveCart()
     }
 
     // 改变商品是否购买状态
     updateIsCheck(id,isCheck){
-      const index = this.globalData.cart.findIndex(item => item.id == id)
-      this.globalData.cart[index].isCheck = isCheck
+      this.globalData.cart[this.getIndexById(id)].isCheck = isCheck
       this.saveCart()
+    }
+
+    // 删除商品信息
+    deleteItem(id){
+      this.globalData.cart.splice(this.getIndexById(id),1)
+      this.saveCart()
+    }
+
+    // 获取索引下标
+    getIndexById(id){
+      return this.globalData.cart.findIndex(item => item.id == id)
     }
 
     // 购物车本地存储

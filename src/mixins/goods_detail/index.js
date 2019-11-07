@@ -13,8 +13,6 @@ export default class extends wepy.mixin {
          */
         addToCart(){
             this.$parent.addToCart(this.goods_detail)
-            console.log(this.$parent.globalData.cart);
-            
         },
 
         /**

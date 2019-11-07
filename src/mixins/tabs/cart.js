@@ -18,6 +18,13 @@ export default class extends wepy.mixin {
          */
         isCheckChange(event){
             this.$parent.updateIsCheck(event.target.dataset.id,event.detail);
+        },
+
+        /**
+         * 删除商品
+         */
+        deleteItem(id){
+            this.$parent.deleteItem(id);
         }
     }
 

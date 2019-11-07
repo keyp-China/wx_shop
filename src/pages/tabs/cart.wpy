@@ -11,19 +11,25 @@
             <van-cell title="购物车列表">
                 <van-icon name="cart-o" slot="icon" size="20px" />
             </van-cell>
-            <!-- 商品卡片 -->
-            <van-card title="{{item.name}}" wx:for="{{cart}}" wx:key="index">
-                <!-- 描述插槽 -->
-                <view slot="desc" class="desc">
-                    <text class="price">￥{{item.price}}</text>
-                    <van-stepper value="{{item.count}}" @change="countChange" data-id="{{item.id}}"/>
-                </view>
-                <!-- 图片插槽 -->
-                <view slot="thumb" class="thumb">
-                    <van-checkbox value="{{item.isCheck}}" @change="isCheckChange" data-id="{{item.id}}"></van-checkbox>
-                    <image src="{{item.pic}}"></image>
-                </view>
-            </van-card>
+
+            <!-- 商品滑动组件 -->
+            <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0.001 }}" wx:for="{{cart}}" wx:key="index">
+                <!-- 商品卡片 -->
+                <van-card title="{{item.name}}">
+                    <!-- 描述插槽 -->
+                    <view slot="desc" class="desc">
+                        <text class="price">￥{{item.price}}</text>
+                        <van-stepper value="{{item.count}}" @change="countChange" data-id="{{item.id}}" />
+                    </view>
+                    <!-- 图片插槽 -->
+                    <view slot="thumb" class="thumb">
+                        <van-checkbox value="{{item.isCheck}}" @change="isCheckChange" data-id="{{item.id}}"></van-checkbox>
+                        <image src="{{item.pic}}"></image>
+                    </view>
+                </van-card>
+                <!-- 右侧滑动删除 -->
+                <view slot="right" class="right-delete" @tap="deleteItem({{item.id}})">删除</view>
+            </van-swipe-cell>     
         </view>
     </view>
 </template>
@@ -52,6 +58,15 @@ export default class Cart extends wepy.page {
         }
     }
     .cart_list{
+        .right-delete{
+            width: 65px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            color: #fff;
+            background-color: #f00;
+        }
+
         .desc{
             display: flex;
             justify-content: space-between;
