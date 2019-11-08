@@ -36,7 +36,7 @@
             </view>
             
             <!-- 提交订单栏 -->
-            <van-submit-bar price="{{ totalPrice }}" button-text="提交订单" bind:submit="onClickButton">
+            <van-submit-bar price="{{ totalPrice }}" button-text="提交订单" bind:submit="submitOrder()">
                 <van-checkbox custom-class="checkAll" value="{{isCheckAll}}" @change="checkAll">全选</van-checkbox>
             </van-submit-bar>
         </view>

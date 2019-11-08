@@ -1,0 +1,22 @@
+<template>
+    <view></view>
+</template>
+
+<script>
+
+import wepy from 'wepy'
+import mix from '@/mixins/order'
+
+export default class Order extends wepy.page {
+    mixins = [mix]
+
+    config = {
+        navigationBarTitleText: '提交订单'
+    }
+}
+
+</script>
+
+<style lang='less'>
+
+</style>

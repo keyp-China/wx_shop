@@ -32,6 +32,17 @@ export default class extends wepy.mixin {
          */
         checkAll(event){
             this.$parent.checkAll(event.detail)
+        },
+
+        /**
+         * 提交订单事件
+         */
+        submitOrder(){
+            // 如果总价小于等于0 
+            if(this.totalPrice<=0) return wepy.baseToast("请选择商品")
+            wepy.navigateTo({
+                url:'/pages/order/index'
+            })
         }
     }
 
