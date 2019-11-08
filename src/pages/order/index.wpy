@@ -1,5 +1,24 @@
 <template>
-    <view></view>
+    <view class='order'>
+        <!-- 添加收货地址 -->
+        <view class="chooseAddress">
+            <van-button type="danger" size="small">+添加收货地址</van-button>
+        </view>
+        <!-- 展示收货地址 -->
+        <view class="addressInfo">
+            <view class="message">
+                <text>收货人：张三</text>
+                <view class="contact">
+                    <text>联系方式：010-7897987987986</text>
+                    <van-icon name="arrow" />
+                </view>
+            </view>
+            <view>收货地址：广东省深圳市南山区</view>
+        </view>
+        <!-- 分割线 -->
+        <image class="line" src="http://destiny001.gitee.io/image/cart_border.png"></image>
+        
+    </view>
 </template>
 
 <script>
@@ -18,5 +37,33 @@ export default class Order extends wepy.page {
 </script>
 
 <style lang='less'>
-
+.order{
+    .chooseAddress{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150rpx;
+    }
+    .line{
+        width: 100%;
+        height: 15rpx;
+        display: block;
+    }
+    .addressInfo{
+        font-size: 30rpx;
+        padding: 10rpx 15rpx;
+        line-height: 50rpx;
+        .message{
+            display: flex;
+            justify-content: space-between;
+            .contact{
+                display: flex;
+                align-items: center;
+                .van-icon{
+                    display: block;
+                }
+            }
+        }
+    }
+}
 </style>

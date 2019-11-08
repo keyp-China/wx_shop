@@ -38,7 +38,8 @@
         "van-stepper": "./components/vant/stepper/index",
         "van-checkbox": "./components/vant/checkbox/index",
         "van-swipe-cell": "./components/vant/swipe-cell/index",
-        "van-submit-bar": "./components/vant/submit-bar/index"
+        "van-submit-bar": "./components/vant/submit-bar/index",
+        "van-button": "./components/vant/button/index"
       },
       window: {
         backgroundTextStyle: 'light',
