@@ -1,19 +1,19 @@
 <template>
     <view class='order'>
         <!-- 添加收货地址 -->
-        <view class="chooseAddress">
-            <van-button type="danger" size="small">+添加收货地址</van-button>
+        <view class="chooseAddress" wx:if="{{isShowAddress}}">
+            <van-button type="danger" size="small" @tap="chooseAddress">+添加收货地址</van-button>
         </view>
         <!-- 展示收货地址 -->
-        <view class="addressInfo">
+        <view class="addressInfo" wx:else @tap="chooseAddress">
             <view class="message">
-                <text>收货人：张三</text>
+                <text>收货人：{{addressInfo.userName}}</text>
                 <view class="contact">
-                    <text>联系方式：010-7897987987986</text>
+                    <text>联系方式：{{addressInfo.telNumber}}</text>
                     <van-icon name="arrow" />
                 </view>
             </view>
-            <view>收货地址：广东省深圳市南山区</view>
+            <view>收货地址：{{addressToString}}</view>
         </view>
         <!-- 分割线 -->
         <image class="line" src="http://destiny001.gitee.io/image/cart_border.png"></image>
