@@ -18,6 +18,25 @@
         <!-- 分割线 -->
         <image class="line" src="http://destiny001.gitee.io/image/cart_border.png"></image>
         
+        <!-- 商品列表 -->
+        <view class="item_list">
+            <van-card wx:for="{{cart}}" wx:key="index"
+                num="{{item.count}}"
+                price="{{item.price}}"
+                title="{{item.name}}"
+                thumb="{{item.pic}}"
+            />
+        </view>
+
+        <!-- 登录按钮 -->
+        <button wx:if="{{isShowLogin}}" type="primary" class="loginBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
+        <!-- 提交订单 -->
+        <van-submit-bar
+            wx:else 
+            price="{{ getTotalPirce }}"
+            button-text="提交订单"
+            bind:submit="onSubmit"
+        />
     </view>
 </template>
 
@@ -64,6 +83,12 @@ export default class Order extends wepy.page {
                 }
             }
         }
+    }
+
+    .loginBtn{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
 }
 </style>
