@@ -68,4 +68,8 @@ export default class extends wepy.mixin {
     onLoad(){
         this.cart = this.$parent.globalData.cart
     }
+
+    onShow(){
+        this.$parent.setTabBarBadge()
+    }
 }

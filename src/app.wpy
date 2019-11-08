@@ -132,6 +132,7 @@
     // 购物车本地存储
     saveCart(){
       wepy.setStorageSync('cart',this.globalData.cart)
+      this.setTabBarBadge()
     }
 
     // 点击全选修改状态
@@ -160,9 +161,25 @@
       })
     }
 
-    onLaunch() {
-      this.globalData.cart = wepy.getStorageSync('cart') || []
-     }
+    // 设置购物车数量显示
+    setTabBarBadge(){
+      let total = 0
+      this.globalData.cart.forEach(item=>{
+        if(item.isCheck){
+          total += item.count
+        }
+      })
+      wepy.setTabBarBadge({
+        index: 3,
+        text: total.toString()
+      }).catch(err=>err)
+    }
 
+    onLaunch() {
+      // 从本地获取购物车的值
+      this.globalData.cart = wepy.getStorageSync('cart') || []
+      // 应用加载时
+      this.setTabBarBadge()
+    }
   }
 </script>
